@@ -10,7 +10,7 @@ So you can still use template expressions, bindings, templates as well as all th
 The ActionBar is the NativeScript common abstraction over the Android ActionBar and iOS NavigationBar.
 http://docs.nativescript.org/ui/action-bar
 -->
-<ActionBar title="Sensors Example" backgroundColor="#666666"></ActionBar>
+<ActionBar title="Compass" backgroundColor="#666666"></ActionBar>
 
 <!--
 The GridLayout arranges its child elements in a table structure of rows and columns.
@@ -22,22 +22,9 @@ These components make use of the NativeScript core theme, which styles them with
 The theme also provides a set of helper class names such as p-20, h1, h2, and text-center to enhance styling.
 You can learn more about the NativeScript core theme at https://github.com/nativescript/theme
 -->
-<FlexboxLayout flexGrow="1" backgroundColor="#666666" alignItems="center" justifyContent="center"
-               flexDirection="column">
-  <FlexboxLayout flexDirection="row">
-    <FlexboxLayout class="m-5 box" [nsRouterLink]="['/compass']">
-      <label text="Magnetometer"></label>
-    </FlexboxLayout>
-    <FlexboxLayout class="m-5 box" [nsRouterLink]="['/accelerometer']">
-      <label text="Accelerometer"></label>
-    </FlexboxLayout>
-  </FlexboxLayout>
-  <FlexboxLayout flexDirection="row">
-    <FlexboxLayout class="m-5 box" [nsRouterLink]="['/barometer']">
-      <label text="Barometer"></label>
-    </FlexboxLayout>
-    <FlexboxLayout class="m-5 box" [nsRouterLink]="['/gyroscope']">
-      <label text="Gyroscope"></label>
-    </FlexboxLayout>
-  </FlexboxLayout>
+<FlexboxLayout backgroundColor="#666666" alignItems="center" justifyContent="center" flexDirection="column">
+  <image src="~/assets/compass_pointer.png" stretch="aspectFit" height="40" width="40"></image>
+  <image #compassBg src="~/assets/compass_bg.png" stretch="aspectFit" [ngStyle]="{transform: [{rotate: 10}]}"></image>
+  <label #degree text="" color="#ffffff"></label>
+  <label #direction text="" color="#ffffff"></label>
 </FlexboxLayout>

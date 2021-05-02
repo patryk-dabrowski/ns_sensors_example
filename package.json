@@ -25,9 +25,9 @@
     "{N}",
     "template"
   ],
-  "repository": "<fill-your-repository-here>",
+  "repository": "https://github.com/patryk-dabrowski/ns_sensors_example",
   "bugs": {
-    "url": "https://github.com/NativeScript/NativeScript/issues"
+    "url": "https://github.com/patryk-dabrowski/ns_sensors_example/issues"
   },
   "dependencies": {
     "@angular/animations": "~11.2.7",

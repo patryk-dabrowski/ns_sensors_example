@@ -10,7 +10,7 @@ So you can still use template expressions, bindings, templates as well as all th
 The ActionBar is the NativeScript common abstraction over the Android ActionBar and iOS NavigationBar.
 http://docs.nativescript.org/ui/action-bar
 -->
-<ActionBar title="Sensors Example" backgroundColor="#666666"></ActionBar>
+<ActionBar title="My App" backgroundColor="#666666"></ActionBar>
 
 <!--
 The GridLayout arranges its child elements in a table structure of rows and columns.
@@ -25,19 +25,58 @@ You can learn more about the NativeScript core theme at https://github.com/nativ
 <FlexboxLayout flexGrow="1" backgroundColor="#666666" alignItems="center" justifyContent="center"
                flexDirection="column">
   <FlexboxLayout flexDirection="row">
-    <FlexboxLayout class="m-5 box" [nsRouterLink]="['/compass']">
+    <FlexboxLayout
+      class="m-5"
+      width="120"
+      height="120"
+      backgroundColor="#dddddd"
+      justifyContent="center"
+      alignItems="center"
+      [nsRouterLink]="['/item', 1]"
+    >
       <label text="Magnetometer"></label>
     </FlexboxLayout>
-    <FlexboxLayout class="m-5 box" [nsRouterLink]="['/accelerometer']">
+    <FlexboxLayout
+      class="m-5"
+      width="120"
+      height="120"
+      backgroundColor="#dddddd"
+      justifyContent="center"
+      alignItems="center"
+      [nsRouterLink]="['/item', 2]"
+    >
       <label text="Accelerometer"></label>
     </FlexboxLayout>
   </FlexboxLayout>
   <FlexboxLayout flexDirection="row">
-    <FlexboxLayout class="m-5 box" [nsRouterLink]="['/barometer']">
+    <FlexboxLayout
+      class="m-5"
+      width="120"
+      height="120"
+      backgroundColor="#dddddd"
+      justifyContent="center"
+      alignItems="center"
+      [nsRouterLink]="['/item', 2]"
+    >
       <label text="Barometer"></label>
     </FlexboxLayout>
-    <FlexboxLayout class="m-5 box" [nsRouterLink]="['/gyroscope']">
+    <FlexboxLayout
+      class="m-5"
+      width="120"
+      height="120"
+      backgroundColor="#dddddd"
+      justifyContent="center"
+      alignItems="center"
+      [nsRouterLink]="['/item', 2]"
+    >
       <label text="Gyroscope"></label>
     </FlexboxLayout>
   </FlexboxLayout>
+  <!--  <ListView [items]="items">-->
+  <!--    <ng-template let-item="item">-->
+  <!--      <StackLayout [nsRouterLink]="['/item', item.id]">-->
+  <!--        <Label [text]="item.name"></Label>-->
+  <!--      </StackLayout>-->
+  <!--    </ng-template>-->
+  <!--  </ListView>-->
 </FlexboxLayout>
