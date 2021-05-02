@@ -1,10 +1,10 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
+import {Component, OnInit} from '@angular/core'
 import {AccelerometerService} from "~/app/accelerometer.service";
 import {Observable} from "rxjs";
 import {AccelerometerData} from "nativescript-accelerometer";
 
 @Component({
-  selector: 'ns-items',
+  selector: 'ns-accelerometer',
   templateUrl: './accelerometer.component.html',
 })
 export class AccelerometerComponent implements OnInit {

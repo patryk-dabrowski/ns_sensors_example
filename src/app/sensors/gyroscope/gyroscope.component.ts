@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core'
 
 @Component({
-  selector: 'ns-items',
+  selector: 'ns-gyroscope',
   templateUrl: './gyroscope.component.html',
 })
 export class GyroscopeComponent implements OnInit {

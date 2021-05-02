@@ -1,45 +1,21 @@
-import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core'
-import {Compass} from "~/app/sensors/compass/compass";
-import {Subject, Subscription} from "rxjs";
+import {Component, OnInit, Renderer2} from '@angular/core'
+import {Observable} from "rxjs";
+import {MagnetometerService} from "~/app/magnetometer.service";
 
 @Component({
-  selector: 'ns-items',
+  selector: 'ns-compass',
   templateUrl: './compass.component.html',
 })
-export class CompassComponent implements OnInit, OnDestroy {
-  @ViewChild('degree', {static: false}) degree: ElementRef
-  @ViewChild('direction', {static: false}) direction: ElementRef
-  @ViewChild('compassBg', {static: false}) compassBg: ElementRef
-  angle$ = new Subject<any>();
-  compass: Compass;
-  private subscription: Subscription;
+export class CompassComponent implements OnInit {
+  public data$: Observable<any>;
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, private magService: MagnetometerService) {
+    this.data$ = magService.data$;
   }
 
   ngOnInit(): void {
-    this.compass = new Compass();
-    this.compass.startUpdatingHeading(this.updateAngle.bind(this));
-
-    this.subscription = this.angle$.subscribe(value => {
-      this.degree.nativeElement.text = this.calcDegree(value);
-      this.direction.nativeElement.text = this.calcDirection(value);
-      this.renderer.setStyle(
-        this.compassBg.nativeElement,
-        'transform',
-        `rotate(${value}deg)`
-      );
-    });
+    this.magService.start();
   }
-
-  ngOnDestroy() {
-    this.compass.stopUpdatingHeading();
-    this.subscription.unsubscribe();
-  }
-
-  private updateAngle(data) {
-    this.angle$.next(data);
-  };
 
   calcDegree(angle) {
     const degree = angle - 90 >= 0 ? angle - 90 : angle + 271;
@@ -65,4 +41,8 @@ export class CompassComponent implements OnInit, OnDestroy {
       return "N";
     }
   };
+
+  rotate(data: any) {
+    return 360 - data;
+  }
 }

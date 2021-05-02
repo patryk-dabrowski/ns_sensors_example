@@ -4,11 +4,12 @@ import {isAndroid, isIOS} from "@nativescript/core/platform";
 declare const android: any;
 declare const CLLocationManager: any;
 
-export class Compass {
+export class Magnetometer {
   private sensorManager: any;
   private sensorUpdate: any;
 
-  startUpdatingHeading(callback) {
+  startMagnetometerUpdate(callback, delay: number = 100) {
+    const wrappedCallback = zonedCallback(callback);
     if (this.sensorManager || this.sensorUpdate) {
       return;
     }
@@ -20,8 +21,8 @@ export class Compass {
         this.sensorManager.startUpdatingHeading();
 
         this.sensorUpdate = setInterval(() => {
-          callback(this.sensorManager.heading.trueHeading);
-        }, 100);
+          wrappedCallback(this.sensorManager.heading.trueHeading);
+        }, delay);
       } else {
         console.error("Heading not available.")
       }
@@ -35,7 +36,7 @@ export class Compass {
       this.sensorUpdate = new android.hardware.SensorEventListener({
         onAccuracyChanged: (sensor: any, accuracy: any) => {},
         onSensorChanged: (event: any) => {
-          callback(event.values[0]);
+          wrappedCallback(event.values[0]);
         }
       })
 
@@ -50,7 +51,7 @@ export class Compass {
     }
   }
 
-  stopUpdatingHeading() {
+  stopMagnetometerUpdates() {
     if (!this.sensorManager || !this.sensorUpdate) {
       return;
     }
