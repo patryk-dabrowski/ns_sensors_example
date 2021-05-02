@@ -1,10 +1,10 @@
 {
-  "name": "@nativescript/template-hello-world-ng",
+  "name": "ns_sensors_example",
   "main": "src/main.ts",
-  "version": "8.0.5",
-  "author": "NativeScript Team <oss@nativescript.org>",
-  "description": "NativeScript Application",
-  "license": "SEE LICENSE IN <your-license-filename>",
+  "version": "0.0.1",
+  "author": "Patryk Dabrowski",
+  "description": "",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
@@ -47,6 +47,8 @@
   },
   "devDependencies": {
     "@angular/compiler-cli": "~11.2.7",
+    "@nativescript/android": "8.0.0",
+    "@nativescript/ios": "8.0.0",
     "@nativescript/types": "~8.0.0",
     "@nativescript/webpack": "beta",
     "@ngtools/webpack": "~11.2.6",
