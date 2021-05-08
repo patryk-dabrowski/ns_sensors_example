@@ -1,36 +1,30 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {
-  startAccelerometerUpdates,
-  AccelerometerData,
-  stopAccelerometerUpdates,
-  isListening
-} from "nativescript-accelerometer";
 import {BehaviorSubject, Observable} from "rxjs";
-import {Magnetometer} from "./magnetometer";
+import {Magnetometer, MagnetometerData} from "./magnetometer";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MagnetometerService implements OnDestroy {
-  private _data$: BehaviorSubject<any> = new BehaviorSubject(0);
+  private _data$: BehaviorSubject<MagnetometerData> = new BehaviorSubject(0);
   private magnetometer: Magnetometer;
-
-  get data$(): Observable<any> {
-    return this._data$;
-  }
 
   constructor() {
     this.magnetometer = new Magnetometer();
   }
 
+  get data$(): Observable<MagnetometerData> {
+    return this._data$;
+  }
+
   start() {
-    this.magnetometer.startMagnetometerUpdate((data) => {
+    this.magnetometer.startUpdate((data) => {
       this._data$.next(data);
     });
   }
 
   stop() {
-    this.magnetometer.stopMagnetometerUpdates();
+    this.magnetometer.stopUpdates();
   }
 
   ngOnDestroy() {

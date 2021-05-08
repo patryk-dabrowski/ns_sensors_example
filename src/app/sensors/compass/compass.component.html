@@ -1,6 +1,7 @@
 <ActionBar title="Compass" backgroundColor="#666666"></ActionBar>
 
-<FlexboxLayout backgroundColor="#666666" alignItems="center" justifyContent="center" flexDirection="column" *ngIf="data$ | async as data">
+<FlexboxLayout backgroundColor="#666666" alignItems="center" justifyContent="center" flexDirection="column"
+               *ngIf="data$ | async as data">
   <image src="~/assets/compass_pointer.png" stretch="aspectFit" height="40" width="40"></image>
   <image src="~/assets/compass_bg.png" stretch="aspectFit" [rotate]="rotate(data)"></image>
   <label [text]="calcDegree(data)" color="#ffffff"></label>

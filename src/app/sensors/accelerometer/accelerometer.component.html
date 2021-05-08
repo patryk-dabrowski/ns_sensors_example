@@ -1,6 +1,7 @@
 <ActionBar title="Accelerometer" backgroundColor="#666666"></ActionBar>
 
-<FlexboxLayout backgroundColor="#666666" alignItems="center" justifyContent="center" flexDirection="column" *ngIf="data$ | async as data">
+<FlexboxLayout backgroundColor="#666666" alignItems="center" justifyContent="center" flexDirection="column"
+               *ngIf="data$ | async as data">
   <label text="Accelerometer: (in Gs where 1 G = 9.81 m s^-2)"></label>
-  <label [text]="'x: ' + data.x.toFixed(2) + ' y: ' + data.y.toFixed(2) + ' z: ' + data.z.toFixed(2)"></label>
+  <label [text]="parseText(data)"></label>
 </FlexboxLayout>

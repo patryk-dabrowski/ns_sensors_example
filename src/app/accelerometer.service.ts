@@ -13,16 +13,18 @@ import {BehaviorSubject, Observable} from "rxjs";
 export class AccelerometerService implements OnDestroy {
   private _data$: BehaviorSubject<AccelerometerData> = new BehaviorSubject({x: 0, y: 0, z: 0});
 
+  ngOnDestroy() {
+    if (this.isListening()) {
+      this.stop();
+    }
+  }
+
   get data$(): Observable<AccelerometerData> {
     return this._data$;
   }
 
-  constructor() {
-  }
-
   start() {
     startAccelerometerUpdates((data) => {
-      // console.dir(data);
       this._data$.next(data);
     }, {sensorDelay: "ui"});
   }
@@ -33,12 +35,5 @@ export class AccelerometerService implements OnDestroy {
 
   isListening() {
     return isListening();
-  }
-
-  ngOnDestroy() {
-    console.log("AccelerometerService.ngOnDestroy()")
-    if (this.isListening()) {
-      this.stop();
-    }
   }
 }

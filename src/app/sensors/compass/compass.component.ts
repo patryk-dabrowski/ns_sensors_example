@@ -1,20 +1,25 @@
-import {Component, OnInit, Renderer2} from '@angular/core'
+import {Component, OnDestroy, OnInit} from '@angular/core'
 import {Observable} from "rxjs";
 import {MagnetometerService} from "~/app/magnetometer.service";
+import {MagnetometerData} from "~/app/magnetometer";
 
 @Component({
   selector: 'ns-compass',
   templateUrl: './compass.component.html',
 })
-export class CompassComponent implements OnInit {
-  public data$: Observable<any>;
+export class CompassComponent implements OnInit, OnDestroy {
+  public data$: Observable<MagnetometerData>;
 
-  constructor(private renderer: Renderer2, private magService: MagnetometerService) {
-    this.data$ = magService.data$;
+  constructor(private service: MagnetometerService) {
+    this.data$ = service.data$;
   }
 
   ngOnInit(): void {
-    this.magService.start();
+    this.service.start();
+  }
+
+  ngOnDestroy(): void {
+    this.service.stop();
   }
 
   calcDegree(angle) {
