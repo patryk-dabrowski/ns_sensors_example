@@ -3,11 +3,10 @@ import {isAndroid, isIOS} from "@nativescript/core/platform";
 
 declare const android: any;
 declare const CMAltimeter: any;
-const main_queue = dispatch_get_current_queue();
 
 export interface BarometerData {
   pressure: number;
-  relativeAltitude: number;
+  relativeAltitude?: number;
 }
 
 export class Barometer {
@@ -21,6 +20,7 @@ export class Barometer {
     }
 
     if (isIOS) {
+      const main_queue = dispatch_get_current_queue();
       this.sensorManager = CMAltimeter.alloc().init();
       const queue = NSOperationQueue.alloc().init();
       this.sensorManager.startRelativeAltitudeUpdatesToQueueWithHandler(queue, (data, error) => {
@@ -47,7 +47,9 @@ export class Barometer {
         onAccuracyChanged: (sensor: android.hardware.Sensor, accuracy: number) => {
         },
         onSensorChanged: (event: android.hardware.SensorEvent) => {
-          wrappedCallback(event.values[0]);
+          wrappedCallback({
+            pressure: event.values[0],
+          });
         }
       })
 

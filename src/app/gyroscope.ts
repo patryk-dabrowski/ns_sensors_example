@@ -3,7 +3,6 @@ import {isAndroid, isIOS} from "@nativescript/core/platform";
 
 declare const android: any;
 declare const CMMotionManager: any;
-const main_queue = dispatch_get_current_queue();
 
 export interface GyroscopeData {
   x: number;
@@ -22,6 +21,7 @@ export class Gyroscope {
     }
 
     if (isIOS) {
+      const main_queue = dispatch_get_current_queue();
       this.sensorManager = CMMotionManager.alloc().init();
       this.sensorManager.gyroUpdateInterval = 0.1
       if (this.sensorManager.gyroAvailable) {

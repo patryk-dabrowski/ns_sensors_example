@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core'
 
 @Component({
   selector: 'ns-items',
-  templateUrl: './items.component.html',
+  templateUrl: './main.component.html',
 })
-export class ItemsComponent implements OnInit {
+export class MainComponent implements OnInit {
   ngOnInit(): void {
   }
 }
