@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core'
 import {Observable} from "rxjs";
-import {BarometerService} from "~/app/barometer.service";
-import {BarometerData} from "~/app/barometer";
+import {BarometerService} from "~/app/services/barometer.service";
+import {BarometerData} from "~/app/sensors/barometer";
 import {isIOS} from "@nativescript/core/platform";
 
 @Component({

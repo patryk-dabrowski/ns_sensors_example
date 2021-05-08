@@ -1,6 +1,6 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {Gyroscope, GyroscopeData} from "./gyroscope";
+import {Gyroscope, GyroscopeData} from "~/app/sensors/gyroscope";
 
 @Injectable({
   providedIn: 'root'

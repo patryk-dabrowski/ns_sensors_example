@@ -1,6 +1,6 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {Magnetometer, MagnetometerData} from "./magnetometer";
+import {Magnetometer, MagnetometerData} from "~/app/sensors/magnetometer";
 
 @Injectable({
   providedIn: 'root'

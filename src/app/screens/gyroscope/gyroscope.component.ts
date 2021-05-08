@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core'
 import {Observable} from "rxjs";
-import {GyroscopeService} from "~/app/gyroscope.service";
-import {GyroscopeData} from "~/app/gyroscope";
+import {GyroscopeService} from "~/app/services/gyroscope.service";
+import {GyroscopeData} from "~/app/sensors/gyroscope";
 
 @Component({
   selector: 'ns-gyroscope',

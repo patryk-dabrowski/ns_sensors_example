@@ -1,6 +1,6 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {Barometer, BarometerData} from "./barometer";
+import {Barometer, BarometerData} from "~/app/sensors/barometer";
 
 @Injectable({
   providedIn: 'root'

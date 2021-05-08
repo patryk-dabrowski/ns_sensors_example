@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core'
 import {Observable} from "rxjs";
-import {MagnetometerService} from "~/app/magnetometer.service";
-import {MagnetometerData} from "~/app/magnetometer";
+import {MagnetometerService} from "~/app/services/magnetometer.service";
+import {MagnetometerData} from "~/app/sensors/magnetometer";
 
 @Component({
   selector: 'ns-compass',
@@ -22,12 +22,11 @@ export class CompassComponent implements OnInit, OnDestroy {
     this.service.stop();
   }
 
-  calcDegree(angle) {
-    const degree = angle - 90 >= 0 ? angle - 90 : angle + 271;
-    return Math.floor(degree * 100) / 100;
+  calcDegree(angle: number) {
+    return Math.round(angle);
   }
 
-  calcDirection(angle) {
+  calcDirection(angle: number) {
     if (angle >= 22.5 && angle < 67.5) {
       return "NE";
     } else if (angle >= 67.5 && angle < 112.5) {
@@ -47,7 +46,7 @@ export class CompassComponent implements OnInit, OnDestroy {
     }
   };
 
-  rotate(data: any) {
-    return 360 - data;
+  rotate(data: number) {
+    return 270 - data;
   }
 }

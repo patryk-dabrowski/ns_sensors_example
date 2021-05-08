@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core'
-import {AccelerometerService} from "~/app/accelerometer.service";
+import {AccelerometerService} from "~/app/services/accelerometer.service";
 import {Observable} from "rxjs";
 import {AccelerometerData} from "nativescript-accelerometer";
 
