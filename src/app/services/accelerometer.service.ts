@@ -1,22 +1,16 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {
-  startAccelerometerUpdates,
-  AccelerometerData,
-  stopAccelerometerUpdates,
-  isListening
-} from "nativescript-accelerometer";
 import {BehaviorSubject, Observable} from "rxjs";
+import {Accelerometer, AccelerometerData} from "~/app/sensors/accelerometer";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccelerometerService implements OnDestroy {
   private _data$: BehaviorSubject<AccelerometerData> = new BehaviorSubject({x: 0, y: 0, z: 0});
+  private accelerometer: Accelerometer;
 
-  ngOnDestroy() {
-    if (this.isListening()) {
-      this.stop();
-    }
+  constructor() {
+    this.accelerometer = new Accelerometer();
   }
 
   get data$(): Observable<AccelerometerData> {
@@ -24,16 +18,16 @@ export class AccelerometerService implements OnDestroy {
   }
 
   start() {
-    startAccelerometerUpdates((data) => {
+    this.accelerometer.startUpdate((data) => {
       this._data$.next(data);
-    }, {sensorDelay: "ui"});
+    });
   }
 
   stop() {
-    stopAccelerometerUpdates();
+    this.accelerometer.stopUpdates();
   }
 
-  isListening() {
-    return isListening();
+  ngOnDestroy() {
+    this.stop();
   }
 }
